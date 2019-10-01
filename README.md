@@ -1,1 +1,1 @@
-# p8105_hw2_sm4594
+This repository contains the RMD file for Datascience HW#2
