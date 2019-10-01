@@ -1,0 +1,17 @@
+---
+title: "Data Science HW#2"
+author: "Sophia Miller"
+date: "10/1/2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Loading tidyverse
+```{r}
+library(tidyverse)
+```
+
+
