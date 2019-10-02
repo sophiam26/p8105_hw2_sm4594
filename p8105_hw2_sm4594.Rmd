@@ -69,6 +69,7 @@ precip_data =
 ```
 
 There are `r nrow(precip_data)` observations in the precipitation dataset. Key variables in the precipitation dataset include month, year, and total precipitation. Total precipitation in 2018 was `r sum(precip_data$total)`. There are in `r nrow(trashwheel_data)` observations the trashwheel dataset. Key variables include wight_tons, volume_cubic_yards, and homes_powered. The median number of sports balls in a dumpster in 2017 is 
+
 # Problem 2
 
 ## Read and clean pols-month data
@@ -88,11 +89,13 @@ select(-day) %>%
 snp_data = read_csv(file = "./data/snp.csv") %>%
 janitor::clean_names() %>%
 separate(date, c("month","day","year")) %>%
-select(-day) %>%
+select(year, month, day, close) %>%
 mutate(
     month = as.numeric(month),
-    month = month.name[month])
+    month = month.name[month],
+    year = as.integer(year))
 ```
+
 ## Read and clean unemployment data
 
 ```{r unemployment}
