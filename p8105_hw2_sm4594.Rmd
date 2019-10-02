@@ -106,6 +106,6 @@ janitor::clean_names() %>%
     jan:dec,
     names_to = "month",
     values_to = "percent_unemployment") %>%
-  mutate(month = recode(month, "jan" = "January"))
+  mutate(month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June", "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" = "December"))
 ```
 
