@@ -116,14 +116,14 @@ janitor::clean_names() %>%
 
 ```{r combine_pols_snp}
 pols_snp_data = 
-  left_join(pols_month_data, snp_data, by = "year", "month")
+  left_join(pols_month_data, snp_data, by = c("year", "month"))
 ```
 
 ## Join unemployment_data and pols_snp_data
 
 ```{r combine pols_snp_unemployment}
 pols_snp_unemp_data = 
-  left_join(pols_snp_data, unemployment_data, by = "year", "month")
+  left_join(pols_snp_data, unemployment_data, by = c("year", "month"))
 ```
 
 The "pols-month" dataset contains information about the number of politicians who are democratic or republican at a given time point. The "snp" dataset contains information about the closing value of the Standard & Poor stock market index on a given date. The "unemployment" dataset contains information about the percentage of unemployment in a given month of an associated year. The dataset "pols_snp_unemp_data," which results from combining the pols-month, snp, and unemployment datasets, has `r nrow(pols_snp_unemp_data)` rows and `r ncol(pols_snp_unemp_data)` columns. Key variables in the "pols_snp_unemp_data" dataset include "year" "month" "president", "unemployment", and "close". 
