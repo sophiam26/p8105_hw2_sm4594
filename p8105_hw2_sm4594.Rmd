@@ -89,6 +89,7 @@ select(-day) %>%
 snp_data = read_csv(file = "./data/snp.csv") %>%
 janitor::clean_names() %>%
 separate(date, c("month","day","year")) %>%
+select(-day) %>%
 mutate(
     month = as.numeric(month),
     month = month.name[month]
