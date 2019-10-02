@@ -131,3 +131,9 @@ The "pols-month" dataset contains information about the number of politicians wh
 
 # Problem 3
 
+## Read and clean baby name popularity data
+
+```{r}
+baby_name_data = read_csv("./data/Popular_Baby_Names.csv")
+```
+
