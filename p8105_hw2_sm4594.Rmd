@@ -72,6 +72,8 @@ There are in the precipitation dataset. Key variables in the precipitation datas
 ## Read and clean pols-month data
 
 ```{r pols_month}
-pols_month_data = read_csv(file = "./data/pols-month.csv")
+pols_month_data = read_csv(file = "./data/pols-month.csv") %>%
+separate(mon, c("year", "month","day")) %>%
+select(-day)
 ```
 
