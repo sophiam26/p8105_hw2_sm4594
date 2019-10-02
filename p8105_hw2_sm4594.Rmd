@@ -68,8 +68,7 @@ precip_data =
     )
 ```
 
-There are in the precipitation dataset. Key variables in the precipitation dataset include month, year, and total precipitation. Total precipitation in 2018 was `r sum(precip_data$total)`. There are in the trashwheel dataset. Key variables include wight_tons, volume_cubic_yards, and homes_powered. The median number of sports balls in a dumpster in 2017 is `r sum(trashwheel_data$sports_balls)`.
-transform(month = month.name)
+There are `r nrow(precip_data)` observations in the precipitation dataset. Key variables in the precipitation dataset include month, year, and total precipitation. Total precipitation in 2018 was `r sum(precip_data$total)`. There are in the trashwheel dataset. Key variables include wight_tons, volume_cubic_yards, and homes_powered. The median number of sports balls in a dumpster in 2017 is 
 # Problem 2
 
 ## Read and clean pols-month data
@@ -92,8 +91,7 @@ separate(date, c("month","day","year")) %>%
 select(-day) %>%
 mutate(
     month = as.numeric(month),
-    month = month.name[month]
-)
+    month = month.name[month])
 ```
 ## Read and clean unemployment data
 
