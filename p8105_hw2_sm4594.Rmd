@@ -78,12 +78,12 @@ There are `r nrow(precip_data)` observations in the precipitation dataset. Key v
 pols_month_data = read_csv(file = "./data/pols-month.csv") %>%
 janitor::clean_names() %>%
 separate(mon, c("year","month","day")) %>%
-select(-day) %>%
   mutate(
     month = as.numeric(month),
     month = month.name[month],
     president = prez_dem,
-    president = recode(president, '1' = "dem", '0' = "gop"))
+    president = recode(president, '1' = "dem", '0' = "gop")) %>%
+  select(-day, -prez_gop, -prez_dem)
 ```
 ## Read and clean snp data
 
