@@ -134,9 +134,12 @@ The "pols-month" dataset contains information about the number of politicians wh
 
 ## Read and clean baby name popularity data
 
-```{r}
+```{r baby_names}
 baby_name_data = read_csv("./data/Popular_Baby_Names.csv") %>%
   janitor::clean_names() %>%
-  mutate(ethnicity = recode(ethnicity, "ASIAN AND PACI" = "ASIAN AND PACIFIC ISLANDER"))
+  mutate(
+    ethnicity = recode(ethnicity, "ASIAN AND PACI" = "ASIAN AND PACIFIC ISLANDER"),
+    childs_first_name = str_to_upper (childs_first_name)
+    )
 ```
 
