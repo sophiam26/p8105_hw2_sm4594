@@ -28,7 +28,8 @@ trashwheel_data = janitor::clean_names(trashwheel_data)
 ```
 
 ```{r drop_nondata}
-drop_na(trashwheel_data,dumpster)
+trashwheel_data = 
+  drop_na(trashwheel_data,dumpster)
 ```
 
 
