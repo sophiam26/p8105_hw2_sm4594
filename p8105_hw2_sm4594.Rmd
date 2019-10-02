@@ -26,7 +26,8 @@ trashwheel_data = read_excel(
   col_names = TRUE
   ) %>%
   janitor::clean_names() %>%
-  drop_na(dumpster)
+  drop_na(dumpster) %>%
+  mutate(sports_balls = round(sports_balls, 0))
 ```
 
 
