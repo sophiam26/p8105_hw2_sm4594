@@ -82,7 +82,8 @@ separate(mon, c("year","month","day")) %>%
     month = as.numeric(month),
     month = month.name[month],
     president = prez_dem,
-    president = recode(president, '1' = "dem", '0' = "gop")) %>%
+    president = recode(president, '1' = "dem", '0' = "gop"),
+    year = as.numeric(year)) %>%
   select(-day, -prez_gop, -prez_dem)
 ```
 ## Read and clean snp data
@@ -94,7 +95,8 @@ separate(date, c("month","day","year")) %>%
 select(year, month, day, close) %>%
 mutate(
     month = as.numeric(month),
-    month = month.name[month])
+    month = month.name[month],
+    year = as.numeric(year))
 ```
 
 ## Read and clean unemployment data
@@ -107,13 +109,20 @@ janitor::clean_names() %>%
     names_to = "month",
     values_to = "percent_unemployment") %>%
   mutate(
-    month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June", "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" = "December"))
+    month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June", "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" = "December"),
+    year = as.numeric(year))
 ```
-## Join pols-month and snp datasets
+## Join pols_month_data and snp_data
 
 ```{r combine_pols_snp}
 pols_snp_data = 
   left_join(pols_month_data, snp_data, by = "year", "month")
 ```
 
-## Join 
+## Join unemployment_data and pols_snp_data
+
+```{r combine pols_snp_unemployment}
+pols_snp_unemp_data = 
+  left_join(pols_snp_data, unemployment_data, by = "year", "month")
+```
+
