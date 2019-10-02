@@ -65,3 +65,4 @@ precip_data =
   transform(month = month.name)
 ```
 
+There are in the precipitation dataset. Key variables in the precipitation dataset include month, year, and total precipitation. Total precipitation in 2018 was `r sum(precip_data$total)`. There are in the trashwheel dataset. Key variables include wight_tons, volume_cubic_yards, and homes_powered. The median number of sports balls in a dumpster in 2017 is `r count(trashwheel_data$sports_balls)`
