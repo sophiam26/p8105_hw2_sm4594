@@ -126,3 +126,5 @@ pols_snp_unemp_data =
   left_join(pols_snp_data, unemployment_data, by = "year", "month")
 ```
 
+# Problem 3
+
