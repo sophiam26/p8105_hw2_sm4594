@@ -106,6 +106,13 @@ janitor::clean_names() %>%
     jan:dec,
     names_to = "month",
     values_to = "percent_unemployment") %>%
-  mutate(month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June", "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" = "December"))
+  mutate(
+    month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June", "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" = "December"))
+```
+## Join pols-month and snp datasets
+
+```{r combine_pols_snp}
+combined_data = 
+  left_join(pols_month_data, snp_data, by = "year", "month")
 ```
 
