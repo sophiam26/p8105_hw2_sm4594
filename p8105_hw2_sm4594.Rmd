@@ -22,14 +22,11 @@ library(readxl)
 trashwheel_data = read_excel(
   path = "data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
   sheet = "Mr. Trash Wheel",
-  range = "A2:N408")
-
-trashwheel_data = janitor::clean_names(trashwheel_data)
-```
-
-```{r drop_nondata}
-trashwheel_data = 
-  drop_na(trashwheel_data,dumpster)
+  range = "A2:N408",
+  col_names = TRUE
+  ) %>%
+  janitor::clean_names() %>%
+  drop_na(dumpster)
 ```
 
 
