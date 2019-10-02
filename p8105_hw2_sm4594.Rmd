@@ -76,10 +76,21 @@ transform(month = month.name)
 
 ```{r pols_month}
 pols_month_data = read_csv(file = "./data/pols-month.csv") %>%
-separate(mon, c("year", "month","day")) %>%
+separate(mon, c("year","month","day")) %>%
 select(-day) %>%
   mutate(
     month = as.numeric(month),
     month = month.name[month])
 ```
+## Read and clean snp data
+
+```{r}
+snp_data = read_csv(file = "./data/snp.csv") %>%
+separate(date, c("month","day","year")) %>%
+mutate(
+    month = as.numeric(month),
+    month = month.name[month]
+)
+```
+
 
