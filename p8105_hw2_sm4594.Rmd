@@ -141,6 +141,10 @@ baby_name_data =
   mutate(
     ethnicity = recode(ethnicity, "ASIAN AND PACI" = "ASIAN AND PACIFIC ISLANDER"),
     childs_first_name = str_to_upper(childs_first_name)) %>%
-  distinct(year_of_birth, childs_first_name, gender, .keep_all = TRUE)
+  distinct(.keep_all = TRUE)
+```
+## Table showing rank in popularity of name "Olivia"
+```{r olivia}
+
 ```
 
