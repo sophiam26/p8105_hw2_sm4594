@@ -5,16 +5,16 @@ date: "10/1/2019"
 output: github_document
 ---
 
-# Loading tidyverse
-```{r tidyverse}
+# Loading necessary packages
+```{r load_packages}
 library(tidyverse)
+library(readxl)
 ```
 
 # Problem 1
 ## Read and clean Mr. Trash Wheel sheet
 
 ```{r read_trashwheel}
-library(readxl)
 trashwheel_data = read_excel(
   path = "data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
   sheet = "Mr. Trash Wheel",
@@ -163,7 +163,6 @@ baby_name_data %>%
   ) %>%
   knitr::kable(format = 'pandoc', caption = "Most Popular Male Baby Name by Ethnicity Over Time (2011-2016)")
 ```
-
 
 
 ## Scatterplot
