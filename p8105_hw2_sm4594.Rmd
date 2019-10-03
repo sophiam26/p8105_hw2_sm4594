@@ -143,6 +143,15 @@ baby_name_data =
     childs_first_name = str_to_upper(childs_first_name)) %>%
   distinct(.keep_all = TRUE)
 ```
+## Making a table
+```{r}
+olivia_data = 
+  filter(baby_name_data, childs_first_name == "OLIVIA")
+```
+
+
+
+
 ## Scatterplot
 
 ```{r scatterplot}
