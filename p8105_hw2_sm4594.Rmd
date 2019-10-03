@@ -144,9 +144,15 @@ baby_name_data =
   distinct(.keep_all = TRUE)
 ```
 ## Making a table
-```{r}
+```{r olivia_table}
 olivia_data = 
-  filter(baby_name_data, childs_first_name == "OLIVIA")
+  filter(baby_name_data, childs_first_name == "OLIVIA", gender == "FEMALE") %>% 
+  select(year_of_birth, ethnicity, rank) %>%
+  pivot_wider(
+    names_from = "year_of_birth",
+    values_from = "rank"
+  ) %>% 
+  knitr::kable(caption = "Populatirity of the Name Olivia by Ethncity Over Time (2011-2016)")
 ```
 
 
