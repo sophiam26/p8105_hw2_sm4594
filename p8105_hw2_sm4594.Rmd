@@ -76,7 +76,7 @@ janitor::clean_names() %>%
 separate(mon, c("year","month","day")) %>%
   mutate(
     month = as.numeric(month),
-    month = month.name[month],
+    month = month.abb[month],
     president = prez_dem,
     president = recode(president, '1' = "dem", '0' = "gop"),
     year = as.numeric(year)) %>%
@@ -92,7 +92,7 @@ select(year, month, close, -day) %>%
   mutate(month = as.factor(month)) %>%
   arrange(year, month) %>%
 mutate(
-  month = month.name[(as.numeric(month))],
+  month = month.abb[(as.numeric(month))],
   year = as.numeric(year))
 ```
 
@@ -104,10 +104,10 @@ janitor::clean_names() %>%
   pivot_longer(
     jan:dec,
     names_to = "month",
-    values_to = "percent_unemployment") %>%
-  mutate(
-    month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June", "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" = "December"),
-    year = as.numeric(year))
+    values_to = "percent_unemployment"
+    ) %>%
+    mutate(
+      year = as.numeric(year))
 ```
 ## Join pols_month_data and snp_data
 
