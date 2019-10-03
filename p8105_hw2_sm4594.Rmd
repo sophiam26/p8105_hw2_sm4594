@@ -143,8 +143,14 @@ baby_name_data =
     childs_first_name = str_to_upper(childs_first_name)) %>%
   distinct(.keep_all = TRUE)
 ```
-## Table showing rank in popularity of name "Olivia"
-```{r olivia}
+## Scatterplot
 
+```{r scatterplot}
+baby_subset = 
+  filter(baby_name_data, gender == "MALE", ethnicity == "WHITE NON HISPANIC", year_of_birth == "2016" )
+
+ggplot(baby_subset, aes(x = rank, y = count)) + geom_point()
 ```
+
+
 
