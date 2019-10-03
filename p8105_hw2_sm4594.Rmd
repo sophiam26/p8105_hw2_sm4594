@@ -135,7 +135,7 @@ baby_name_data =
   read_csv("./data/Popular_Baby_Names.csv") %>%
   janitor::clean_names() %>%
   mutate(
-    ethnicity = recode(ethnicity, "ASIAN AND PACI" = "ASIAN AND PACIFIC ISLANDER"),
+    ethnicity = recode(ethnicity, "ASIAN AND PACI" = "ASIAN AND PACIFIC ISLANDER", "BLACK NON HISP" = "BLACK NON HISPANIC", "WHITE NON HISP" = "WHITE NON HISPANIC"),
     childs_first_name = str_to_upper(childs_first_name)) %>%
   distinct(.keep_all = TRUE)
 ```
