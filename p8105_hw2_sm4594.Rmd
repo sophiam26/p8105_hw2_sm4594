@@ -71,9 +71,9 @@ precip_data =
 ```
 
 
-There are `r nrow(precip_data)` observations and `r ncol(precip_data)` variables in the precipitation dataset. Key variables in the precipitation dataset include month, year, and total precipitation. Total precipitation in 2018 was `r sum(pull(filter(precip_data, year == 2018), total))`. Total precipication in 2017 was `r sum(pull(filter(precip_data, year == 2017), total))`. 
+There are `r nrow(precip_data)` observations and `r ncol(precip_data)` variables in the precipitation dataset. Key variables in the precipitation dataset include month, year, and `total`, which shows total precipitation in a given year/month. Total precipitation in 2018 was `r sum(pull(filter(precip_data, year == 2018), total))`. Total precipication in 2017 was `r sum(pull(filter(precip_data, year == 2017), total))`. 
 
-There are in `r nrow(trashwheel_data)` observations and `r ncol(trashwheel_data)` variables in the trashwheel dataset. Key variables include dumpster number (`dumpster`), weight of litter collected (`weight_in_tons`), volume of litter collected (`volume_cubic_yards`), and numberof homes powered. For example, `r sum(pull(filter(trashwheel_data, year == 2019, month == "May"), weight_tons))` tons of trash was collected in May 2019. The dataset also contains information on the quantity of different types of litter collected in a dumpster. For example, the median number of sports balls in a dumpster in 2017 was `r median(pull(filter(trashwheel_data, year == 2017), sports_balls))` and the median number of plastic bottles in a dumpster in 2018 was `r median(pull(filter(trashwheel_data, year == 2018), plastic_bottles))`.
+There are in `r nrow(trashwheel_data)` observations and `r ncol(trashwheel_data)` variables in the trashwheel dataset. Key variables include dumpster number (`dumpster`), weight of litter collected (`weight_in_tons`), volume of litter collected (`volume_cubic_yards`), and number of homes powered (`homes_powered`). For example, `r sum(pull(filter(trashwheel_data, year == 2019, month == "May"), weight_tons))` tons of trash were collected in May 2019. The dataset also contains information on the quantity of different types of litter collected in a dumpster. For example, the median number of sports balls in a dumpster in 2017 was `r median(pull(filter(trashwheel_data, year == 2017), sports_balls))` and the median number of plastic bottles in a dumpster in 2018 was `r median(pull(filter(trashwheel_data, year == 2018), plastic_bottles))`.
 
 # Problem 2
 
@@ -98,7 +98,7 @@ separate(mon, c("year","month","day")) %>%
   select(-day, -prez_gop, -prez_dem)
 ```
 ## Read and clean snp data
-#### *The code chunk below cleans the data in snp.csv similarly to `pols_month_data`, arranges the data in chronological by year and month, and makes `year` and `month` the leading columns.*
+#### *The code chunk below cleans the data in snp.csv similarly to `pols_month_data`, arranges the data in chronological order by `year` and `month`, and makes `year` and `month` the leading columns.*
 
 ```{r snp}
 snp_data = read_csv(file = "./data/snp.csv") %>%
@@ -135,11 +135,11 @@ politics_data =
   left_join( unemployment_data, by = c("year", "month"))
 ```
 
-The `pols_month_data` dataset contains information about the number of politicians who are democratic or republican at a given time point. The `snp_data` dataset contains information about the closing value of Standard & Poor's stock market index on a given date. The `unemployment_data` dataset contains information about the percentage of unemployment in a given month of an associated year. The dataset `politics_data`, which results from combining the three datasets, has `r nrow(politics_data)` rows and `r ncol(politics_data)` columns. The years range from 1947 to 2015. Key variables in the `politics` dataset include  `president`, which indicates if the president was a democrat or republican during a given year/month, `unemployment`, which indicates the percent unemployment during a given year/month, and `close`, which indicates the closing value of Standard & Poor's stock market during a given year/month. 
+The `pols_month_data` dataset contains information about the number of politicians who are democratic or republican at a given time point. The `snp_data` dataset contains information about the closing value of Standard & Poor's stock market index on a given date. The `unemployment_data` dataset contains information about the percentage of unemployment in a given month of an associated year. The dataset `politics_data`, which results from combining the three datasets, has `r nrow(politics_data)` rows and `r ncol(politics_data)` columns. The years range from 1947 to 2015. Key variables in the `politics` dataset include  `president`, which indicates if the president was a democrat or republican during a given year/month, `unemployment`, which indicates the percent unemployment during a given year/month, and `close`, which indicates the closing value of Standard & Poor's stock market during a given year/month. For example, we can see that the mean percent unemployment under a republican president was `r mean(pull(filter(politics_data, president == "gop"), percent_unemployment))` while the median percent unemployment under a democratic president was `r mean(pull(filter(politics_data, president == "dem", percent_unemployment >= 0), percent_unemployment))`.
 
 # Problem 3
 ## Read and clean baby name popularity data
-#### *The code chunk below standardizes ethnicity names and the case of the `childs_first_name` variable`, and removes duplicate rows.*
+#### *The code chunk below standardizes ethnicity names and the case of the `childs_first_name` variable, and removes duplicate rows.*
 
 ```{r baby_names}
 baby_name_data = 
