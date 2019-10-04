@@ -1,1 +1,1 @@
-This repository contains the RMD file for Datascience HW#2
+# This is the repository for Data Science HW#2
