@@ -6,6 +6,7 @@ output: github_document
 ---
 
 # Loading necessary packages
+
 ```{r load_packages}
 library(tidyverse)
 library(readxl)
@@ -64,7 +65,19 @@ precip_data =
     )
 ```
 
-There are `r nrow(precip_data)` observations in the precipitation dataset. Key variables in the precipitation dataset include month, year, and total precipitation. Total precipitation in 2018 was `r sum(precip_data$total)`. There are in `r nrow(trashwheel_data)` observations the trashwheel dataset. Key variables include wight_tons, volume_cubic_yards, and homes_powered. The median number of sports balls in a dumpster in 2017 is `r median(pull(filter(trashwheel_data, year == 2017), sports_balls))`
+
+There are `r nrow(precip_data)` observations and `r ncol(precip_data)` variables in the precipitation dataset. Key variables in the precipitation dataset include month, year, and total precipitation. Total precipitation in 2018 was `r sum(pull(filter(precip_data, year == 2018), total))`. Total precipication in 2017 was `r sum(pull(filter(precip_data, year == 2017), total))`. 
+
+There are in `r nrow(trashwheel_data)` observations and `r ncol(trashwheel_data)` variables in the trashwheel dataset. Key variables include dumpster number (`dumpster`), weight of litter collected (`weight_in_tons`), volume of litter collected (`volume_cubic_yards`), and numberof homes powered. For example, `r sum(pull(filter(trashwheel_data, year == 2019, month == "May"), weight_tons))` tons of trash was collected in May 2019. The dataset also contains information on the quantity of different types of litter collected in a dumpster. For example, the median number of sports balls in a dumpster in 2017 was `r median(pull(filter(trashwheel_data, year == 2017), sports_balls))` and the median number of plastic bottles in a dumpster in 2018 was `r median(pull(filter(trashwheel_data, year == 2018), plastic_bottles))`.
+
+
+```{r}
+sum(pull(filter(precip_data_2018, year == 2018), total))
+
+median(pull(filter(trashwheel_data, year == 2017), sports_balls))
+```
+
+
 
 # Problem 2
 
