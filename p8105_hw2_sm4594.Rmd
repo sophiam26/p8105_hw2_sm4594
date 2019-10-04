@@ -117,18 +117,12 @@ janitor::clean_names() %>%
 ## Join pols_month_data and snp_data
 
 ```{r combine_pols_snp}
-pols_snp_data = 
-  left_join(pols_month_data, snp_data, by = c("year", "month"))
+politics_data = 
+  left_join(pols_month_data, snp_data, by = c("year", "month")) %>% 
+  left_join( unemployment_data, by = c("year", "month"))
 ```
 
-## Join unemployment_data and pols_snp_data
-
-```{r combine pols_snp_unemployment}
-pols_snp_unemp_data = 
-  left_join(pols_snp_data, unemployment_data, by = c("year" = "year", "month" = "month"))
-```
-
-The `pols_month_data` dataset contains information about the number of politicians who are democratic or republican at a given time point. The `snp_data` dataset contains information about the closing value of Standard & Poor's stock market index on a given date. The `unemployment_data` dataset contains information about the percentage of unemployment in a given month of an associated year. The dataset `pols_snp_unemp_data`, which results from combining the three datasets, has `r nrow(pols_snp_unemp_data)` rows and `r ncol(pols_snp_unemp_data)` columns. The years range from 1947 to 2015. Key variables in the `pols_snp_unemp_data` dataset include  `president`, which indicates if the president was a democrat or republican during a given year/month, `unemployment`, which indicates the percent unemployment during a given year/month, and `close`, which indicates the closing value of Standard & Poor's stock market during a given year/month. 
+The `pols_month_data` dataset contains information about the number of politicians who are democratic or republican at a given time point. The `snp_data` dataset contains information about the closing value of Standard & Poor's stock market index on a given date. The `unemployment_data` dataset contains information about the percentage of unemployment in a given month of an associated year. The dataset `politics_data`, which results from combining the three datasets, has `r nrow(politics_data)` rows and `r ncol(politics_data)` columns. The years range from 1947 to 2015. Key variables in the `politics` dataset include  `president`, which indicates if the president was a democrat or republican during a given year/month, `unemployment`, which indicates the percent unemployment during a given year/month, and `close`, which indicates the closing value of Standard & Poor's stock market during a given year/month. 
 
 # Problem 3
 
