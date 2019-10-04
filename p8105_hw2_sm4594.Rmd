@@ -14,6 +14,11 @@ library(readxl)
 
 # Problem 1
 ## Read and clean Mr. Trash Wheel sheet
+#### *The code chunk below does the following:*
+
+* *Specifies the relevant sheet in the Excel file*
+* *Omits rows without dumpster-specific data*
+* *Rounds number of sports balls to the nearest integer and converts result to an integer variable*
 
 ```{r read_trashwheel}
 trashwheel_data = read_excel(
@@ -28,7 +33,8 @@ trashwheel_data = read_excel(
     )
 ``` 
 
-## Read and clean precipitation data for 2017
+## Read and clean precipitation data for 2017 and 2018
+#### *The two code chunks below omit rows without precipitation data and add a `year` variable:*
 
 ```{r precip_2017}
 precip_data_2017 = read_excel(
@@ -41,7 +47,6 @@ precip_data_2017 = read_excel(
   mutate(year = 2017)
 ```
 
-## Read and clean precipitation data for 2018
 
 ```{r precip_2018}
 precip_data_2018 = read_excel(
@@ -54,7 +59,7 @@ precip_data_2018 = read_excel(
   mutate(year = 2018)
 ```
 
-## Combine precipitation datasets and convert month to a character variable
+## Combining precipitation datasets and converting `month` to a character variable
 
 ```{r combine_precip}
 precip_data = 
@@ -73,6 +78,12 @@ There are in `r nrow(trashwheel_data)` observations and `r ncol(trashwheel_data)
 # Problem 2
 
 ## Read and clean pols-month data
+#### *The code chunk below does the following:*
+
+* *Separates the `mon` variable into `year`, `month`, and `day`*
+* *Converts `month` to a character variable*
+* *Creates a `president` variable that indicates if a president at a given year/month was a democrat or republican*
+* *Removes the `prez_dem`, `prez_gop`, and `day` variables*
 
 ```{r pols_month}
 pols_month_data = read_csv(file = "./data/pols-month.csv") %>%
@@ -87,6 +98,7 @@ separate(mon, c("year","month","day")) %>%
   select(-day, -prez_gop, -prez_dem)
 ```
 ## Read and clean snp data
+#### *The code chunk below cleans the data in snp.csv similarly to `pols_month_data`, arranges the data in chronological by year and month, and makes `year` and `month` the leading columns.*
 
 ```{r snp}
 snp_data = read_csv(file = "./data/snp.csv") %>%
@@ -101,6 +113,7 @@ mutate(
 ```
 
 ## Read and clean unemployment data
+#### *The code chunk below converts the data in unemployment.csv from wide to long format and mutates the `month` variable values to title case to match the `month` values in `snp_data` and `pols_month_data` so that they can be joined.*
 
 ```{r unemployment}
 unemployment_data = read_csv(file = "./data/unemployment.csv") %>%
@@ -114,7 +127,7 @@ janitor::clean_names() %>%
       year = as.numeric(year),
       month = str_to_title(month))
 ```
-## Join pols_month_data and snp_data
+## Join `pols_month_data`, `snp_data`, and `unemployment_data`
 
 ```{r combine_pols_snp}
 politics_data = 
@@ -125,8 +138,8 @@ politics_data =
 The `pols_month_data` dataset contains information about the number of politicians who are democratic or republican at a given time point. The `snp_data` dataset contains information about the closing value of Standard & Poor's stock market index on a given date. The `unemployment_data` dataset contains information about the percentage of unemployment in a given month of an associated year. The dataset `politics_data`, which results from combining the three datasets, has `r nrow(politics_data)` rows and `r ncol(politics_data)` columns. The years range from 1947 to 2015. Key variables in the `politics` dataset include  `president`, which indicates if the president was a democrat or republican during a given year/month, `unemployment`, which indicates the percent unemployment during a given year/month, and `close`, which indicates the closing value of Standard & Poor's stock market during a given year/month. 
 
 # Problem 3
-
 ## Read and clean baby name popularity data
+#### *The code chunk below standardizes ethnicity names and the case of the `childs_first_name` variable`, and removes duplicate rows.*
 
 ```{r baby_names}
 baby_name_data = 
@@ -137,7 +150,8 @@ baby_name_data =
     childs_first_name = str_to_upper(childs_first_name)) %>%
   distinct(.keep_all = TRUE)
 ```
-## Making a table
+## Making a table that shows the popularity of the name Olivia among girls over time
+
 ```{r olivia_table}
 baby_name_data %>%
   filter(childs_first_name == "OLIVIA", gender == "FEMALE") %>% 
@@ -149,7 +163,7 @@ baby_name_data %>%
   knitr::kable(format = 'pandoc', caption = "Popularity of Name Olivia among Female Babies by Ethnicity Over Time (2011-2016)")
 ```
 
-## Making a table for popular boys names over time
+## Making a table that shows the most popular name among boys over time
 
 ```{r popular_boys_names}
 baby_name_data %>% 
@@ -162,8 +176,7 @@ baby_name_data %>%
   knitr::kable(format = 'pandoc', caption = "Most Popular Male Baby Name by Ethnicity Over Time (2011-2016)")
 ```
 
-
-## Scatterplot
+## Making a scatterplot that plots the number of children with a given name vs. the popularity rank of that name
 
 ```{r scatterplot}
 baby_subset = 
